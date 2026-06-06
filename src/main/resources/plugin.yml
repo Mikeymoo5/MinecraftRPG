@@ -1,4 +1,12 @@
 name: MinecraftRPG
 version: '1.0'
+build-time: ${maven.build.timestamp}
 main: dev.mikeymoo5.minecraftRPG.MinecraftRPG
 api-version: '1.21'
+commands:
+  rpg:
+    description: Info on the RPG plugin
+    usage: /<command>
+  level:
+    description: Returns the player's current level
+    usage: /<command>
