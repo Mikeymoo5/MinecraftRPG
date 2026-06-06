@@ -1,12 +1,15 @@
-package dev.mikeymoo5.minecraftRPG.stats;
+package dev.mikeymoo5.minecraftRPG.stats.impl.player;
+
+import dev.mikeymoo5.minecraftRPG.stats.Stat;
 
 public class Level extends Stat {
+    double levelingConstant;
     double xp;
         public double GetXp() { return xp; }
 
-    public Level(double initialValue) {
+    public Level(double levelingConstant, double initialValue) {
         super("Level", initialValue);
-
+        this.levelingConstant = levelingConstant;
     }
 //    @Override
 //    public double getValue() {
@@ -16,18 +19,16 @@ public class Level extends Stat {
     public void addXP(double diff) {
         xp += diff;
         // Should be correcting any irregularities in level too
-        setValue(Math.floor(calculateLevel()));
+        SetValue(Math.floor(calculateLevel()));
     }
 
     private double calculateLevel() {
-        int c = 7;
-        return Math.pow(xp / c, 0.5);
+        return Math.pow(xp / this.levelingConstant, 0.5);
     }
 
     //TODO: Having all stats have to be a double could be an issue?
     private double minimumXpForLevel(double level) {
-        int c = 7;
-        return Math.pow(level, 2) * c;
+        return Math.pow(level, 2) * this.levelingConstant;
     }
 
 

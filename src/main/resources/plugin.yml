@@ -10,3 +10,6 @@ commands:
   level:
     description: Returns the player's current level
     usage: /<command>
+  rpgget:
+    description: Gives the player a custom item by ID
+    usage: /<command> <itemId>

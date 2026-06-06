@@ -1,6 +1,5 @@
 package dev.mikeymoo5.minecraftRPG.stats;
 
-import dev.mikeymoo5.minecraftRPG.events.StatChangeEvent;
 import org.bukkit.Bukkit;
 
 public abstract class Stat {
@@ -20,10 +19,10 @@ public abstract class Stat {
 
 
     public void add(double diff) {
-        setValue(this.value + diff);
+        SetValue(this.value + diff);
     }
 
-    public void setValue(double newValue) {
+    public void SetValue(double newValue) {
         double oldValue = this.value;
         this.value = newValue;
         Bukkit.getLogger().info("Set a value. Old: " + oldValue + " New: " + newValue + " This.value: " + this.value);

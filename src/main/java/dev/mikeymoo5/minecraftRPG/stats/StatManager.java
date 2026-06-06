@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dev.mikeymoo5.minecraftRPG.MinecraftRPG;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 
@@ -18,8 +19,9 @@ import java.util.UUID;
 public class StatManager {
     private final MinecraftRPG plugin;
     private final Map<UUID, PlayerProfile> profiles = new HashMap<>();
-
-    public StatManager(MinecraftRPG plugin) {
+    private FileConfiguration config;
+    public StatManager(FileConfiguration config, MinecraftRPG plugin) {
+        this.config = config;
         this.plugin = plugin;
     }
     // TODO: Add a save all method
@@ -33,7 +35,7 @@ public class StatManager {
             File file = new File(plugin.getDataFolder(), "players/" + player.getUniqueId() + ".json");
             if(!file.exists()) {
                 Bukkit.getLogger().info("Creating new PlayerProfile for UUID: " + player.getUniqueId());
-                loadedProfile = new PlayerProfile(player.getUniqueId());
+                loadedProfile = new PlayerProfile(config,player.getUniqueId());
             } else {
                 try (FileReader fileReader = new FileReader(file)) {
                     Gson gson = new Gson();
