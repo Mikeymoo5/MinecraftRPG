@@ -15,7 +15,7 @@ public class CustomItemManager {
     }
     public CustomItemManager(MinecraftRPG plugin) {
         this.plugin = plugin;
-        registerHandler(new WoodenWand(plugin, ));
+        registerHandler(new WoodenWand(plugin));
     }
 
     public void registerHandler(AbstractItem... handlers) {

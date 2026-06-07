@@ -1,6 +1,7 @@
 package dev.mikeymoo5.minecraftRPG.stats.impl.player;
 
 import dev.mikeymoo5.minecraftRPG.stats.Stat;
+import org.bukkit.Bukkit;
 
 public class Level extends Stat {
     double levelingConstant;
@@ -9,6 +10,7 @@ public class Level extends Stat {
 
     public Level(double levelingConstant, double initialValue) {
         super("Level", initialValue);
+        Bukkit.getLogger().info("Const = " + levelingConstant);
         this.levelingConstant = levelingConstant;
     }
 //    @Override

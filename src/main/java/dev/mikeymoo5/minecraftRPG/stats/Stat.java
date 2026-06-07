@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 public abstract class Stat {
     private String name;
     private double value;
-    private Runnable onChange;
+    private transient Runnable onChange;
 
     public String GetName() { return name;}
     public double GetValue() { return value; }

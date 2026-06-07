@@ -52,4 +52,8 @@ public final class MinecraftRPG extends JavaPlugin {
             getServer().getPluginManager().registerEvents(listener, this);
         }
     }
+
+    public StatManager GetStatManager() {
+        return this.manager;
+    }
 }

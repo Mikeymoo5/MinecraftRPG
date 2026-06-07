@@ -17,6 +17,17 @@ public class Mana extends Stat {
         super.add(diff);
         if(GetValue() > this.maxMana) {
             SetValue(maxMana);
+        } else if(GetValue() < 0) {
+            SetValue(0);
         }
+    }
+
+    public boolean spendMana(double cost) {
+        if(cost < 0 || GetValue() - cost < 0) {
+            return false;
+        }
+
+        add(-cost);
+        return true;
     }
 }
