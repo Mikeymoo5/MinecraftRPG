@@ -6,6 +6,7 @@ import dev.mikeymoo5.minecraftRPG.stats.PlayerProfile;
 import dev.mikeymoo5.minecraftRPG.stats.StatManager;
 import dev.mikeymoo5.minecraftRPG.stats.impl.item.Damage;
 import dev.mikeymoo5.minecraftRPG.stats.impl.item.ManaCost;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -23,8 +24,12 @@ public class WoodenWand extends AbstractWand {
     public void cast(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         PlayerProfile prof = statManager.getProfile(p);
-//        if(prof.GetMana().spendMana(GetManaCost().GetValue())) {
-            p.getWorld().strikeLightningEffect(p.getTargetBlockExact(10).getLocation());
-//        }
+        if(prof.GetMana().spendMana(GetManaCost().GetValue())) {
+            Block targetedBlock = p.getTargetBlockExact(20);
+            if (targetedBlock == null) {
+                return;
+            }
+            p.getWorld().strikeLightning(targetedBlock.getLocation());
+        }
     }
 }

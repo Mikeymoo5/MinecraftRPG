@@ -4,8 +4,8 @@ import dev.mikeymoo5.minecraftRPG.stats.Stat;
 import org.bukkit.Bukkit;
 
 public class Level extends Stat {
-    double levelingConstant;
-    double xp;
+    private transient double levelingConstant;
+    private double xp;
         public double GetXp() { return xp; }
 
     public Level(double levelingConstant, double initialValue) {

@@ -14,7 +14,8 @@ public class PlayerProfile {
     public UUID GetUUID() { return uuid; }
     // Stats
     private Level level;
-    private Mana mana;
+    // TODO: Mana should not be transient, but the value should be? Potentially refactor.
+    private transient Mana mana;
 
 
     public Level GetLevel() { return level; }
@@ -25,6 +26,7 @@ public class PlayerProfile {
     public PlayerProfile(FileConfiguration config, UUID uuid) {
         this.uuid = uuid;
         this.config = config;
+        this.mana = new Mana(100, 200);
         this.level = new Level(config.getDouble("leveling.leveling_constant"), 1);
         this.level.SetRunnableListener(() -> {
             double currentVal = this.level.GetValue();

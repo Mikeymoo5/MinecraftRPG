@@ -7,6 +7,7 @@ import dev.mikeymoo5.minecraftRPG.items.CustomItemManager;
 import dev.mikeymoo5.minecraftRPG.listeners.BlockListener;
 import dev.mikeymoo5.minecraftRPG.listeners.PlayerListener;
 import dev.mikeymoo5.minecraftRPG.listeners.PlayerStatChangeListener;
+import dev.mikeymoo5.minecraftRPG.runnables.ManaHotbarRunnable;
 import dev.mikeymoo5.minecraftRPG.stats.StatManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -18,6 +19,7 @@ public final class MinecraftRPG extends JavaPlugin {
     private StatManager manager;
     public CustomItemManager customItemManager;
     private FileConfiguration config;
+    private ManaHotbarRunnable manaHotbarRunnable;
     @Override
     public void onEnable() {
         this.manager = new StatManager(getConfig(), this);
@@ -25,6 +27,10 @@ public final class MinecraftRPG extends JavaPlugin {
         this.saveDefaultConfig();
         this.config = getConfig();
         this.customItemManager = new CustomItemManager(this);
+
+        // Register runnables
+        manaHotbarRunnable = new ManaHotbarRunnable(manager);
+        manaHotbarRunnable.runTaskTimer(this, 0L, 20L);
 
 
         // Register Commands
